@@ -1,21 +1,18 @@
-#prunes branches older than 30 days, excluding the main branch.
 name: Branch Pruning
 
 on:
   schedule:
-    - cron: "0 2 * * *" #runs everyday at 2am
+    - cron: "0 2 * * *" # runs everyday at 2am
 
 jobs:
   prune-branches:
     runs-on: ubuntu-latest
-    #using the actions/checkout action to fetch the repository's code into the workflow runner environment.
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-     #using the peter-evans/branch-cleanup-action action, which is a GitHub Action designed for pruning branches.   
       - name: Prune Branches
         uses: peter-evans/branch-cleanup-action@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           days-until-stale: 30
-          excluded-branches: master, main
+          excluded-branches: main
