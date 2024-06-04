@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    #- name: Checkout repository
-     # uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Make script executable
       run: chmod +x prune-branches.sh
